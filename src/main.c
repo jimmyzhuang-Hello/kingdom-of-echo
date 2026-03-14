@@ -1,8 +1,8 @@
 #include "raylib.h"
-#include "player.h"
+#include "game.h"
 
-#define SCREEN_WIDTH 960
-#define SCREEN_HEIGHT 540
+#define SCREEN_WIDTH 1920
+#define SCREEN_HEIGHT 1080
 
 int main(void)
 {
@@ -10,23 +10,22 @@ int main(void)
 
     SetTargetFPS(60);
 
-    Player player;
-    InitPlayer(&player);
+    InitGame();
 
     while (!WindowShouldClose())
     {
         // Update
-        UpdatePlayer(&player);
+        UpdateGame();
 
         // Draw
         BeginDrawing();
         ClearBackground(RAYWHITE);
 
-        DrawPlayer(&player);
+        DrawGame();
 
         EndDrawing();
     }
-
+    CloseGame();
     CloseWindow();
     return 0;
 }

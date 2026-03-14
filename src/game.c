@@ -1,6 +1,7 @@
 #include "game.h"
 #include "raylib.h"
 #include "player.h"
+#include "menu.h"
 
 static Scene currentScene;
 static Player player;
@@ -8,7 +9,7 @@ static Player player;
 void InitGame()
 {
     currentScene = SCENE_MENU;
-
+    InitMenu();
     InitPlayer(&player);
 }
 
@@ -23,8 +24,7 @@ void UpdateGame()
     {
         case SCENE_MENU:
         {
-            if(IsKeyPressed(KEY_ENTER))
-                ChangeScene(SCENE_EXPLORE);
+            UpdateMenu();
         } break;
 
         case SCENE_EXPLORE:
@@ -58,8 +58,7 @@ void DrawGame()
     {
         case SCENE_MENU:
         {
-            DrawText("MEMORY WORLD", 340, 200, 40, WHITE);
-            DrawText("Press ENTER", 380, 300, 20, GRAY);
+            DrawMenu();
         } break;
 
         case SCENE_EXPLORE:
@@ -70,7 +69,7 @@ void DrawGame()
 
         case SCENE_PUZZLE:
         {
-            DrawText("PUZZLE SCENE", 10, 10, 20, YELLOW);
+            DrawText("PUZZLE SCENE", 10, 10, 20, ORANGE);
         } break;
 
         case SCENE_BULLET_HELL:
